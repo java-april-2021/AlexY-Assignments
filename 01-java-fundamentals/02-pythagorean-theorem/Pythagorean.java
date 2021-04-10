@@ -4,3 +4,5 @@ public class Pythagorean {
         return legC;
     }
 }
+
+
