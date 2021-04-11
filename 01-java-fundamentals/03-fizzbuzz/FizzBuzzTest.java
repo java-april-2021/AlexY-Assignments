@@ -4,3 +4,4 @@ public class FizzBuzzTest {
         fb.FizzBuzzTest();
     }
 }
+    
