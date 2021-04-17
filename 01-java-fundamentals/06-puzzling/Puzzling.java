@@ -4,7 +4,7 @@ import java.util.Random;
 // import java.util.*;
 
 public class Puzzling {
-    public ArrayList<Integer> GreaterThanTen(int[] arr){
+    public void GreaterThanTen(int[] arr){
         ArrayList<Integer> newArr = new ArrayList<Integer>();
         int sum = 0;
         for(int i = 0; i < arr.length; i++){
@@ -14,7 +14,7 @@ public class Puzzling {
             }
         }
         System.out.print("The Sum is: " + sum);
-        return newArr;
+        System.out.println(" New Array > 10: " + newArr);
     }
 
     public ArrayList<String> NameShuffle(ArrayList<String> arr){
@@ -89,6 +89,11 @@ public class Puzzling {
         return arr;
     }
 }
+
+
+
+
+
 
 
 

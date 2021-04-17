@@ -7,7 +7,7 @@ public class PuzzlingTest{
         String[] Names = {"Nancy","Jinichi","Fujibayashi","Momochi","Ishikawa"};
         ArrayList<String> NameList = new ArrayList<String>(Arrays.asList(Names));
 
-        System.out.println(" New Array > 10: " + PT.GreaterThanTen(arr));
+        PT.GreaterThanTen(arr);
         System.out.println(PT.NameShuffle(NameList));
         PT.AlphabetVowel();
         System.out.println(PT.NumArray());
