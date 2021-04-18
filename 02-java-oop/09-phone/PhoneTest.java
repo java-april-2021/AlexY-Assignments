@@ -8,3 +8,9 @@ public class PhoneTest {
         fold.displayInfo();
     }
 }
+class Human implements java.io.Serializable {
+
+
+
+
+
