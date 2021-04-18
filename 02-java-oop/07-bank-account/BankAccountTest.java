@@ -4,6 +4,9 @@ public class BankAccountTest {
         me.depositMoney(100, "checking");
         me.displayAccountBalance();
         System.out.println(BankAccount.totalHoldings);
-        
+
     }
 }
+
+
+
