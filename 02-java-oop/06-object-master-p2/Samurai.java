@@ -16,3 +16,8 @@ public class Samurai extends Human{
         return Samurai.numSamurai;
     }
 }
+
+
+
+
+
