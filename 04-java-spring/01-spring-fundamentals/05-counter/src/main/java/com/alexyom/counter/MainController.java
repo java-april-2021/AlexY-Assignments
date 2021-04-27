@@ -10,29 +10,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 	private int getSessionCount(HttpSession sesh) {
-		Object seshCount = sesh.getAttribute("count");
-		if (seshCount == null) {
-			getSessionCount(sesh, 0);
-			seshCount = sesh.getAttribute("count");
+		Object seshVal = sesh.getAttribute("count");
+		if(seshVal == null) {
+			setSessionCount(sesh, 0);
+			seshVal = sesh.getAttribute("count");
 		}
-		return (Integer)seshCount;
+		return (Integer)seshVal;
 	}
-	private void getSessionCount(HttpSession sesh, int val) {
+	private void setSessionCount(HttpSession sesh, int val) {
 		sesh.setAttribute("count", val);
 	}
 	@RequestMapping("/")
+	public String Index(HttpSession s) {
+		int currCount = getSessionCount(s);
+		setSessionCount(s, ++currCount);
+		return "index.jsp";
+	}
+	@RequestMapping("/add/{times}")
 	public String Add(@PathVariable("times") String times, HttpSession s) {
 		int t = 1;
 		try {
 			t = Integer.parseInt(times);
 		}
 		catch(NumberFormatException e) {
-			System.out.println(String.format("Exception thrown %s", e.getMessage()));
+			System.out.println(String.format("Exception Thrown %s", e.getMessage()));
 			return "redirect:/";
 		}
-		int currentCount = getSessionCount(s);
-		currentCount += t;
-		getSessionCount(s, currentCount);
+		int currCount = getSessionCount(s);
+		currCount += t;
+		setSessionCount(s, currCount);
 		return "index.jsp";
 	}
 	@RequestMapping("/reset")
@@ -44,5 +50,6 @@ public class MainController {
 	public String Counter(HttpSession s, Model model) {
 		model.addAttribute("count", getSessionCount(s));
 		return "count.jsp";
+		
 	}
 }
