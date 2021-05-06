@@ -33,10 +33,16 @@ public class LanguageService {
 	//Update a Language
 	public Language updateLanguage(Language language) {
 		return this.lRepo.save(language);
-	} 
+	}
 	
 	//Delete a Language
 	public void deleteLanguage(Long id) {
 		this.lRepo.deleteById(id);
+	}
+	
+	//Create Language with HTML Forms
+	public Language createLanguageHTML(String name, String creator, int version) {
+		Language newLanguage = new Language(name, creator, version);
+		return this.lRepo.save(newLanguage);
 	}
 }

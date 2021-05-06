@@ -10,7 +10,27 @@
 </head>
 <body>
 <div class="container">
-<h1>Welcome to Languages</h1>
+	<h1>Welcome to Languages</h1>
+	<p>We got this! We're gonna do great and be the best software engineer!</p>
+	<table class="table table-dark">
+	<thead>
+	<td>ID</td>
+	<td>Name</td>
+	<td>Creator</td>
+	<td>Version</td>
+	</thead>	
+	<tbody>
+	<c:forEach items="${languages}" var="language">
+	<tr>
+	<td>${language.id}</td>
+	<td>${language.name}</td>
+	<td>${language.creator}</td>
+	<td>${language.version}</td>
+	</tr>
+	</c:forEach>
+	
+	</tbody>
+	</table>
 </div>
 </body>
 </html>

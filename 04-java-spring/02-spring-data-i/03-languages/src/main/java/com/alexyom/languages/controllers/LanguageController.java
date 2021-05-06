@@ -1,42 +1,62 @@
 package com.alexyom.languages.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.alexyom.languages.models.Language;
 import com.alexyom.languages.services.LanguageService;
 
-@RestController
+@Controller
 public class LanguageController {
 	@Autowired
 	private LanguageService lService;
 	
 	@GetMapping("/")
-	public List<Language> index() {
-		return this.lService.getAllLanguages();
+	public String index(Model viewModel) {
+		List<Language> allLanguages = this.lService.getAllLanguages();
+		viewModel.addAttribute("languages", allLanguages);
+		return "index.jsp";
 	}
 	
-	// To pull up specific object by id
-	@GetMapping("/id")
-	public Language getLanguage(@PathVariable("id") Long id) {
-		return this.lService.getSingleLanguage(id);
+	@GetMapping("/add")
+	public String addLanguage(@ModelAttribute("language") Language language) {
+		return "New.jsp";
 	}
 	
-	//@RequestMapping("/value="/delete/{id}", method=RequestMethod.DELETE)
-	@DeleteMapping(value="/delete/{id}")
-	public void deleteLanguage(@PathVariable("id") Long id) {
-		this.lService.deleteLanguage(id);
+	@PostMapping("/add")
+	public String newLanguage(@Valid @ModelAttribute("language") Language language, BindingResult result) {
+		if(result.hasErrors()) {
+			return "New.jsp";
+		}
+		this.lService.createLanguage(language);
+		return "redirect:/";
 	}
-	
-	//@RequestMapping("/value="/update/{id}", method=RequestMethod.PUT)
-	@PutMapping("/update/{id}")
-	public Language updateLanguage(@PathVariable("id") Long id, Language updatedLanguage) {
-		return this.lService.updateLanguage(updatedLanguage);
+	 
+	@PostMapping("/addHTMLWay")
+	public String newLanguageHTML(@RequestParam("name") String name, @RequestParam("creator") String creator, @RequestParam("version") int version, RedirectAttributes redirectAttr) {
+		ArrayList<String> errors = new ArrayList<String>();
+		if(name.equals("")) {
+			errors.add("Name Field must be entered.");
+		}
+		if(errors.size() > 0) {
+			for(String e : errors) {
+				redirectAttr.addFlashAttribute("errors", e);
+			}
+			return "redirect:/add";
+		}
+		this.lService.createLanguageHTML(name, creator, version);
+		return "redirect:/";
 	}
 }
