@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="question")
@@ -24,14 +25,14 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+	@NotBlank()
 	private String question;
 	
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
     
-    @OneToMany(mappedBy="questions", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="question", fetch=FetchType.LAZY)
     private List<Answer> answers;
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -65,6 +66,14 @@ public class Question {
 
 	public void setQuestion(String question) {
 		this.question = question;
+	}
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	public Date getCreatedAt() {

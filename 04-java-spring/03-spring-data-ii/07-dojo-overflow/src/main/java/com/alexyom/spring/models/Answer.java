@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="answers")
@@ -21,6 +22,7 @@ public class Answer {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank()
 	private String answer;
 	
 	@Column(updatable=false)
