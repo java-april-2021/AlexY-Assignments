@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alexyom.spring.models.Category;
+import com.alexyom.spring.models.Product;
 import com.alexyom.spring.repositories.CategoryRepository;
 
 @Service
@@ -33,4 +34,15 @@ public class CategoryService {
 		return this.cRepo.save(category);
 	}
 	
+	//Get Category not added to Product
+	public List<Category> categoriesNotAdded(Product product) {
+		return this.cRepo.findByProductsNotContains(product);
+	}
+	
+	//Add Product to Category
+	public void addProduct(Product product, Category category) {
+		List<Product> products = category.getProducts();
+		products.add(product);
+		this.cRepo.save(category);
+	}
 }

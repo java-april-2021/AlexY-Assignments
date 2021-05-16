@@ -8,6 +8,9 @@
 <title>Create New Product</title>
 </head>
 <body>
+<nav>
+	<h3><a href="/">Go Back</a></h3>
+</nav>
 <h1>Create New Product</h1>
 <form:form action="/products/new" method="post" modelAttribute="product">
 	<p>

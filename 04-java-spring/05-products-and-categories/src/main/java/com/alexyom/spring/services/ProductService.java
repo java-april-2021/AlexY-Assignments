@@ -29,13 +29,20 @@ public class ProductService {
 		return this.pRepo.save(product);
 	}
 	
-	//Update a Category
+	//Update a Product
 	public Product updateProduct(Product product) {
 		return this.pRepo.save(product);
 	}
 	
-	//
+	//Get Category Not Added to Product
 	public List<Product> getUniqueCategory(Category category) {
 		return this.pRepo.findByCategoriesNotContains(category);
+	}
+	
+	//Add Category to Product
+	public void addCategory(Category category, Product product) {
+		List<Category> categories = product.getCategories();
+		categories.add(category);
+		this.pRepo.save(product);
 	}
 }

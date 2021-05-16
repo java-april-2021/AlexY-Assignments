@@ -8,6 +8,9 @@
 <title>Create New Category</title>
 </head>
 <body>
+<nav>
+	<h3><a href="/">Go Back</a></h3>
+</nav>
 <h1>Create New Category</h1>
 <form:form action="/categories/new" method="post" modelAttribute="category">
 	<p>
