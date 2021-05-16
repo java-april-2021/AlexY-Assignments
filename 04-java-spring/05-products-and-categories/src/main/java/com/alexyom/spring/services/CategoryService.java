@@ -42,6 +42,7 @@ public class CategoryService {
 	//Add Product to Category
 	public void addProduct(Product product, Category category) {
 		List<Product> products = category.getProducts();
+		System.out.println(product);
 		products.add(product);
 		this.cRepo.save(category);
 	}

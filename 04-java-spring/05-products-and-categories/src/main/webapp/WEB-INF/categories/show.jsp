@@ -24,15 +24,16 @@
 	</c:forEach>
 </c:if>
 <hr/>
-<form:form action="/products/addCategory/${product.id}" method="post" modelAttribute="category">
-<p>Add Product</p>
-<select name="product">
+<form action="/category/addProduct" method="post">
+<input type="hidden" name="category_id" value=${category.id}>
+<h3>Add Product</h3>
+<select name="product_id" class="form-control">
 <c:forEach var="product" items="${unAdded }">
-<option value="product.id">${product.name}</option>
+	<option value=${product.id}>${product.name}</option>
 </c:forEach>
 </select>
 <button>Add Product</button>
-</form:form>
+</form>
 
 </body>
 </html>

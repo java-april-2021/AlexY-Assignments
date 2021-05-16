@@ -19,22 +19,22 @@
 <hr/>
 
 <h3>Categories</h3>
-<c:if test="${empty categories}">
-	No categories have been added!
-</c:if>
-<c:if test="${not empty categories}">
-	<c:forEach var="added" items="${categories}">
-		<c:out value="${added.name}"/>
-	</c:forEach>
-</c:if>
+
+
+<c:forEach var="added" items="${product.categories}">
+	<c:out value="${added.name}"/>
+</c:forEach>
+
 <hr/>
-<form:form action="/product/addCategory/${product.id}" method="post" modelAttribute="category">
-<select name="category">
+<form action="/product/addCategory" method="post">
+<input type="hidden" name="product_id" value=${product.id}>
+<h3>Add Category</h3>
+<select name="category_id" class="form-control">
 <c:forEach var="category" items="${uniqueCategories}">
-	<option value="${category.id}">${category.name}</option>
+	<option value=${category.id}>${category.name}</option>
 </c:forEach>
 </select>
 <button>Add Category</button>
-</form:form>
+</form>
 </body>
 </html>
