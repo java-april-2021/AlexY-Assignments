@@ -3,6 +3,7 @@ package com.alexyom.spring.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,7 @@ public class Question {
     @OneToMany(mappedBy="questions", fetch=FetchType.LAZY)
     private List<Answer> answers;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
     		name = "tags_questions",
     		joinColumns = @JoinColumn(name = "question_id"),

@@ -3,6 +3,7 @@ package com.alexyom.spring.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Tag {
     private Date createdAt;
     private Date updatedAt;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
     		name = "tags_questions",
     		joinColumns = @JoinColumn(name = "tag_id"),
