@@ -47,7 +47,7 @@ public class HomeController {
 	
 	//Show Specific Question
 	@GetMapping("/question/{id}")
-	public String showQuestion(@PathVariable("id") Long id, @ModelAttribute("answer") Answer answer, Model viewModel) {
+	public String showQuestion(@PathVariable("id") Long id, @ModelAttribute("answerout") Answer answer, Model viewModel) {
 		Question question = this.qService.getSingleQuestion(id);
 		viewModel.addAttribute("question", question);
 		return "show.jsp";
@@ -55,8 +55,8 @@ public class HomeController {
 	
 	//Answer the Question
 	@PostMapping("/answer")
-	public String answerQuestion(@Valid @ModelAttribute("answer") Answer answer, BindingResult result) {
-		System.out.println("Executed");
+	public String answerQuestion(@Valid @ModelAttribute("answerout") Answer answer, BindingResult result) {
+		System.out.println(answer.getAnswer());
 		if(result.hasErrors()) {
 			return "show.jsp";
 		} else {

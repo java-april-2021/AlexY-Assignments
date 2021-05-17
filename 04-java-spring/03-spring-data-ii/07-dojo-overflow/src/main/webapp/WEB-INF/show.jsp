@@ -24,11 +24,11 @@
 			<li><span>${tag.subject}</span></li>
 		</c:forEach>
 	</ul>
-	<form:form action="/answer" method = "post" modelAttribute="answer">
+	<form:form action="/answer" method="post" modelAttribute="answerout">
 		<div class="form-group">
-		<form:label path="answer">Add your answer</form:label>
-		<form:errors path="answer"/>
-		<form:input path="answer" type="text"/>
+			<form:label path="answer">Add your answer</form:label>
+			<form:errors path="answer"/>
+			<form:input path="answer" type="text"/>
 		</div>
 		<form:hidden path="question" value="${ question.id }"/>
 		<input type="submit" value="Answer"/>
