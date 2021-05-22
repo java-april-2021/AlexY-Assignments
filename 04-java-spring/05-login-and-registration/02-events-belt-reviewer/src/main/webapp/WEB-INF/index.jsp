@@ -37,6 +37,20 @@
 				<td><form:input path="email" class="input" /></td>
 			</tr>
 			<tr>
+				<td><form:label path="city">City</form:label></td>
+			    <td><form:errors path="city"/></td>
+			    <td><form:input class="input" path="city" /></td>
+		    </tr>
+			<tr>
+			    <td><form:label path="state">State</form:label></td>
+			    <td><form:errors path="state"/></td>
+				<td><form:select path="state">
+				<c:forEach items="${ states }" var="state">
+					<option value="${ state }">${ state }</option>
+				</c:forEach>
+					</form:select></td>
+			</tr>
+			<tr>
 				<td><form:label path="password">Password:</form:label></td>
 				<td><form:errors path="password"></form:errors></td>
 				<td><form:input path="password"	type="password" class="input" /></td>
