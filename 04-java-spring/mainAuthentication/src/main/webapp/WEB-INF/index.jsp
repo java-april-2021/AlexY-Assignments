@@ -22,9 +22,14 @@
 		</p>
 		<table>
 			<tr>
-				<td><form:label path="name">Name:</form:label></td>
-				<td><form:errors path="name"></form:errors></td>
-				<td><form:input path="name"	class="input" /></td>
+				<td><form:label path="firstName">First Name:</form:label></td>
+				<td><form:errors path="firstName"></form:errors></td>
+				<td><form:input path="firstName" class="input" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="lastName">Last Name:</form:label></td>
+				<td><form:errors path="lastName"></form:errors></td>
+				<td><form:input path="lastName"	class="input" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="email">Email:</form:label></td>

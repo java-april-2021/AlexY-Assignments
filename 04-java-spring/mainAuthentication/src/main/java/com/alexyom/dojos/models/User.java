@@ -20,14 +20,22 @@ public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-	@Size(min=1, message="Name must not be empty")
-	private String name;
+	
+	@Size(min=1, message="First name must not be empty")
+	private String firstName;
+	
+	@Size(min=1, message="Last name must not be empty")
+	private String lastName;
+	
 	@Pattern(regexp="^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9.-]+$", message="Invalid email pattern")
     private String email;
+	
     @Size(min=8, message="Password must be at least 8 characters")
 	private String password;
+    
     @Transient
     private String passwordConfirmation;
+    
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
@@ -43,13 +51,21 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {

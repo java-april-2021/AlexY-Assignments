@@ -22,7 +22,7 @@
 		</nav>
 	</div>
 	<div class="card">
-		<h2>Welcome <c:out value="${user.name}"/></h2>
+		<h2>Welcome <c:out value="${user.firstName}"/></h2>
 		<h5><c:out value="${user.id}"/></h5>
 	</div>
 	
