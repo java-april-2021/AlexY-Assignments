@@ -1,5 +1,6 @@
 package com.alexyom.dojos.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class EventService {
 	
 	//Get All Events in State
 	public List<Event> allEventsWithState(String state) {
-		return this.eRepo.findByState(state);
+		return this.eRepo.findByStateOrderByEventDateDesc(state);
 	}
 	
 	//Get All Events NOT in State
