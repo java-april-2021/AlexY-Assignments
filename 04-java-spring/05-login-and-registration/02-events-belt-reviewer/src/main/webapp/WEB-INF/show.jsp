@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+	<!--  Navigation Bar -->
 	<div class="card">
 		<h1>Show Event</h1>
 		<nav>
@@ -22,6 +23,8 @@
 			<h3><a href="/link2">Link2</a></h3>
 		</nav>
 	</div>
+	
+	<!--  Event description-->
 	<div class="card">
 		<h1>${event.name}</h1>
 		<p>Hosted By: ${event.planner.firstName}</p>
@@ -29,6 +32,8 @@
 		<p>Location: ${event.city} ${event.state}</p>
 		<p>People attending this event: ${event.attendees.size()}</p>
 	</div>
+	
+	<!--  Attendees of Event -->
 	<div class="card">
 		<table class = "table table-dark table-hover event-table">
 			<thead>
@@ -38,15 +43,17 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${event.attendees}" var="attendee" varStatus="loop">
 				<tr>
-					<c:forEach items="${event.attendees}" var="attendee" varStatus="loop">
 					<td>${attendee.firstName} ${attendee.lastName}</td>
 					<td>${attendee.city} ${attendee.state}</td>
-					</c:forEach>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	
+	<!--  Message Wall -->
 	<div>
 		<h2>Message Wall</h2>
 		<c:choose>
@@ -71,7 +78,8 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-	
+
+		<!--  Add A Message -->	
 		<form action="/events/${event.id}/comment" method="post">
 			<div class="form-group">
 				<label for="comment">Add Comment</label>

@@ -15,6 +15,8 @@
 </head>
 <body>
 <div class="container">
+
+	<!--  Navigation Bar -->
 	<div class="card">
 		<h1>Dashboard</h1>
 		<nav>
@@ -23,12 +25,16 @@
 			<h3><a href="/logout">Log Out</a></h3>
 		</nav>
 	</div>
+	
 	<div class="card">
 		<h2>Welcome <c:out value="${user.firstName}"/></h2>
 		<h5><c:out value="${user.id}"/></h5>
 	</div>
+	
+	<!--  Add Event -->
 	<div class="card">
 	<form:form action="/add" method="post" modelAttribute="event">
+		<!--  Don't forget hidden input type for form:form -->
 		<form:input type="hidden" path="planner" value="${user.id}"/>
 		<div class="form-group">
 			<form:label path="name">Event Name</form:label>
@@ -56,7 +62,9 @@
 		</div>
 		<button class="btn btn-primary">Create Event</button>
 	</form:form>
-	</div> 
+	</div>
+	
+	<!--  Table of In State Events --> 
 	<div class="card">
 		<h2>In State Events</h2>
 		<table class="table table-dark table table-striped">
@@ -107,6 +115,8 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<!--  Table of Out of State Events -->
 	<div class="card">
 		<h2>Out of State Events</h2>
 		<table class="table table-dark table table-striped">

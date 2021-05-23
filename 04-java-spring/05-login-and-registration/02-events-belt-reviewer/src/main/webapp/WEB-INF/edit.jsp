@@ -14,6 +14,7 @@
 </head>
 <body>
 <div class="container">
+	<!--  Navigation Bar -->
 	<div class="card">
 		<h1>Edit Event</h1>
 		<nav>
@@ -21,11 +22,14 @@
 			<h3><a href="/link2">Link2</a></h3>
 		</nav>
 	</div>
+	
+	<!--  Update Form -->
 	<div class="card">
 		<h1>${event.name}</h1>
+		<!--  Set up Update Forms this way -->
 		<form:form action="/events/${event.id}/editEvent" method="post" modelAttribute="event">
 		<input type="hidden" name="_method" value="put">
-		
+		<!--  Don't forget form:hidden -->
 		<form:hidden value="${user}" path="planner"/>
 		<div class="form-group">
 			<form:label path="name">Name: </form:label>
