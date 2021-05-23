@@ -78,19 +78,22 @@
 					<td>${event.planner.firstName} ${event.planner.lastName}</td>
 					<c:choose>
 						<c:when test="${event.planner.equals(user)}">
-								<td><a href="/events/${event.id}/edit">Edit</a>
-								<form action ="/events/${event.id}/delete" method ="POST">
-								<input class="btn btn-link" type="submit" value="Delete">
-								</form></td>
+							<td>
+							<a href="/events/${event.id}/edit">Edit</a> 
+							<form action ="/events/${event.id}/delete" method ="POST">
+							<input class="btn btn-link" type="submit" value="Delete">
+							</form>
+							</td>	
 						</c:when>
 						<c:otherwise>
-							<c:if test="${event.planner.contains(user)}">
-								<td><a href="/events/${event.id}/edit">Edit</a>
+							<c:if test="${event.attendees.contains(user)}">
+								<td>
 								<form action ="/events/${event.id}/remove" method ="POST">
 								<input class="btn btn-link" type="submit" value="Leave">
-								</form></td>
+								</form>
+								</td>
 							</c:if>
-							<c:if test="${!event.planner.equals(user)}">
+							<c:if test="${!event.attendees.contains(user)}">
 								<td>
 								<form action ="/events/${event.id}/join" method ="POST">
 								<input class="btn btn-link" type="submit" value="Join">

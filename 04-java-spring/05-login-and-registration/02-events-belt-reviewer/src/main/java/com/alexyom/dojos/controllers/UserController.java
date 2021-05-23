@@ -88,10 +88,14 @@ public class UserController {
 	public String show(@PathVariable("id") Long id, Model model, HttpSession session) {
 		Long userId = this.userSession(session);
 		Event event = this.eService.findById(id);
+		
 		if(userId == null)
 			return "redirect:/";
 		if(event == null)
 			return "redirect:/dashboard";
+		
+		User user = this.uService.findUserById(userId);
+		model.addAttribute("user", user);
 		model.addAttribute("event", event);
 		model.addAttribute("userId", userId);
 		return "show.jsp";
@@ -180,5 +184,12 @@ public class UserController {
 			this.eService.update(event);
 			return "redirect:/dashboard";
 		}
+	}
+	
+	//Delete Comment
+	@PostMapping("message/{id}/delete")
+	public String deleteComment(@PathVariable("id") Long id) {
+		eService.deleteComment(id);
+		return "redirect:/dashboard";
 	}
 }

@@ -60,6 +60,13 @@
 						${message.author.firstName} ${message.author.lastName}:
 					</span>
 					${message.comment}
+					
+					<c:if test="${message.author.equals(user)}">
+						<form action ="/message/${message.id}/delete" method ="POST">
+							<input class="btn btn-link" type="submit" value="Delete">
+						</form>
+					</c:if>
+			 
 				</p>
 				</c:forEach>
 			</c:otherwise>

@@ -58,6 +58,11 @@ public class EventService {
 		this.mRepo.save(new Message(author, comment, event));
 	}
 	
+	//Delete Comment on Event
+	public void deleteComment(Long id) {
+		this.mRepo.deleteById(id);
+	}
+	
 	//Manage Attendees (Optional)
 	public void manageAttendees(Event event, User user, boolean isJoining) {
 		if (isJoining) {
